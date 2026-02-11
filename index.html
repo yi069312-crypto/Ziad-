@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>من شهد إلى زياد ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital@1&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --pink: #ff85a1; --dark-rose: #a4133c; --bg: #fff0f3; }
+        body, html { margin: 0; padding: 0; font-family: 'Tajawal', sans-serif; background-color: var(--bg); overflow-x: hidden; }
+
+        #bg-elements { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+        .falling-element { position: absolute; top: -50px; color: var(--pink); font-size: 20px; animation: fall linear infinite; opacity: 0.5; }
+        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+
+        #lock-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .lock-box { border: 4px solid var(--pink); padding: 40px; border-radius: 35px; background: #fff; box-shadow: 0 20px 50px rgba(255,133,161,0.2); text-align: center; }
+        .dial-container { display: flex; flex-direction: row-reverse; gap: 15px; margin: 25px 0; }
+        .dial { width: 60px; height: 120px; overflow-y: scroll; scroll-snap-type: y mandatory; border: 1px solid #eee; border-radius: 10px; scrollbar-width: none; background: #fafafa; }
+        .dial::-webkit-scrollbar { display: none; }
+        .dial div { height: 120px; display: flex; justify-content: center; align-items: center; font-size: 2.8rem; font-weight: bold; scroll-snap-align: center; color: var(--dark-rose); }
+        .unlock-btn { background: var(--pink); color: white; border: none; padding: 15px 60px; border-radius: 50px; cursor: pointer; font-size: 1.3rem; font-weight: bold; }
+.player-container { display: flex; justify-content: center; margin: 30px 0; }
+.audio-player { background: white; border: 2px solid #ff85a1; border-radius: 50px; padding: 10px 25px; width: 85%; max-width: 400px; box-shadow: 0 10px 20px rgba(255,182,193,0.3); }
+.player-controls { display: flex; align-items: center; gap: 15px; }
+.play-btn { background: #ff85a1; border: none; width: 45px; height: 45px; border-radius: 50%; color: white; font-size: 18px; cursor: pointer; display: flex; justify-content: center; align-items: center; }
+.player-info { flex-grow: 1; }
+.track-name { font-size: 0.9rem; color: #a4133c; font-weight: bold; text-align: right; margin-bottom: 5px; }
+.seek-bar { width: 100%; accent-color: #ff85a1; }
+
+        #main-content { display: none; opacity: 0; transition: 1.5s; position: relative; z-index: 2; padding: 20px; }
+        header { text-align: center; padding: 40px 0; }
+        header h1 { font-family: 'Amiri', serif; font-size: 3rem; color: var(--dark-rose); margin: 0; }
+
+        .photo-card { background: white; border-radius: 20px; padding: 15px; margin: 20px auto; width: 280px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-bottom: 5px solid var(--pink); text-align: center; }
+        .photo-card img { width: 100%; height: 350px; object-fit: cover; border-radius: 15px; }
+        .photo-caption { margin-top: 15px; font-family: 'Amiri', serif; font-size: 1.4rem; color: var(--dark-rose); font-weight: bold; }
+
+        .message-box { background: white; padding: 35px; max-width: 600px; margin: 40px auto; border-radius: 30px; line-height: 2.3; font-size: 1.45rem; text-align: center; border: 2px solid var(--pink); font-family: 'Amiri', serif; box-shadow: 0 15px 40px rgba(255,133,161,0.15); white-space: pre-wrap; }
+
+        .video-box { width: 100%; max-width: 500px; margin: 60px auto; border: 8px solid white; border-radius: 25px; box-shadow: 0 20px 40px rgba(0,0,0,0.15); background: #000; }
+        video { width: 100%; display: block; }
+    </style>
+</head>
+<body>
+
+    <div id="bg-elements"></div>
+
+    <div id="lock-screen">
+        <div class="lock-box">
+            <h2 style="color: var(--dark-rose); font-family: 'Amiri'; margin-bottom: 20px;">الباسورد اليوم الـ بقينا فيه مع بعض يا حبيبى ❤️ </h2>
+            <div class="dial-container">
+                <div class="dial" id="d3"></div> <div class="dial" id="d2"></div> <div class="dial" id="d1"></div> </div>
+            <button class="unlock-btn" onclick="checkLock()">دخول ❤️</button>
+            <p style="margin-top:20px; color:var(--pink); font-weight: bold; font-size:0.9rem;"> حبيبي : </p>
+        </div>
+    </div>
+
+    <div id="main-content">
+        <header>
+            <h1>حبيب سنينى وايامى 🫂</h1>
+            <p style="color:var(--pink); font-weight:bold;">أجمل ايام  فى حياتى</p>
+        </header>
+
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+            <div class="photo-card"><img src="https://files.catbox.moe/2zr46n.jpg"><div class="photo-caption">كل سنه وانت حبيبى ودنيتى كلها يا نور عينى 🫂</div></div>
+            <div class="photo-card"><img src="https://files.catbox.moe/m5xim2.jpg"><div class="photo-caption">ضحتك احلى حاجه فى حياتى يا عمرى الحلو 💕</div></div>
+            <div class="photo-card"><img src="https://files.catbox.moe/po7vjx.jpg"><div class="photo-caption">يا صاحب وحبيب ايامى وسنينى 💗</div></div>
+        </div> <div class="player-container">
+    <div class="audio-player">
+        <div class="player-controls">
+            <button class="play-btn" id="playBtn2">▶</button>
+            <div class="player-info">
+                <div class="track-name">Song 2 ❤️</div>
+                <input type="range" class="seek-bar" id="seekBar2" value="0" max="100">
+            </div>
+        </div>
+    </div>
+</div>
+
+<audio id="song2" src="https://files.catbox.moe/0ajfqa.mp3"></audio>
+   
+
+        <div class="message-box">كل عيد حب وانت معايا وجمبى يا نور عينى وحبيب ايامى وعمرى 💗
+انهارده مش بس عيد حب احنا كمان كملنا 6 شهور سوا ولا حسيت بيهم ، احلى 6 شهور فى حياتى ف امان وانا مبسوطه وانا معاك وبعيش فيهم معاك مشاعر انا اول مره احس بيها واعيشها ، ربنا يحفظك ليا يا حبيبى ومشوفش فيك اى حاجه وحشه ابداً واشوفك دائماً مبسوط وكويس وناجح وتكون جمبى فى كل دا يا نور عينى 💕
+انت عمرك ما هتتخيل انا بحبك اد ايه او انت عندى ايه وغالى عليا ازاى ، صوتك بس بيخلينى مطمنه وحاسه أن مفيش اى حاجه فى الدنيا وحشه ، وجودك بس بيحسسنى أن الدنيا كويسه ومفيش مشاكل وحتى لو فيه هتتحل ، ولو معرفتش اعمل ايه هجيلك تقولى اعمل ايه وتتصرف 🤎
+بحس انك طول الوقت بتحاوطنى ومعايا وبتسندنى فى أو وقت وبحس انك ضهر ليا فى اى وقت 💕
+يارب تبقا جمبى دايما ومتبعدش عنى ونتجوز ونعمل البيت الـ نفسنا فيه ونجيب مراد ومريم يتنططو حوالينا ونعيش مبسوطين سوا وتبقا محاوطنا وبابانا كلنا 🥹❤️
+كل عيد حب وانت جمبى يانور عيني وفى كل الاوقات فى ضهرى وبتدعمنى وبتسندنى وابقا عايشه ليك وعشانك يا حبيب عمرى كله ♥️♥️♥️♥️♥️
+بحبك اوى 🫂🫂</div>
+
+        <div class="video-box">
+            <video id="myVideo" controls playsinline>
+                <source src="https://files.catbox.moe/sja4pm.mp4" type="video/mp4">
+            </video>
+        </div>
+        
+        <footer style="text-align:center; padding:40px; color:var(--dark-rose); font-family:'Amiri';">بحبك اكتر من اى حاجه فى الدنيا كلها 💗</footer>
+    </div>
+
+    <audio id="song.mp3" src="https://files.catbox.moe/919sa7.mp3" loop></audio>
+
+    <script>
+        function init() {
+            ['d1', 'd2', 'd3'].forEach(id => {
+                const el = document.getElementById(id);
+                for(let i=0; i<100; i++) {
+                    const d = document.createElement('div'); d.textContent = i % 10;
+                    el.appendChild(d);
+                }
+                el.scrollTop = 120 * 50;
+            });
+            setInterval(() => {
+                const p = document.createElement('div');
+                p.className = 'falling-element'; p.textContent = '❤️';
+                p.style.left = Math.random()*100 + 'vw';
+                p.style.animationDuration = (Math.random()*3+2)+'s';
+                document.getElementById('bg-elements').appendChild(p);
+                setTimeout(() => p.remove(), 4000);
+            }, 500);
+        }
+        init();
+
+        function checkLock() {
+            const n1 = Math.round(document.getElementById('d1').scrollTop / 120) % 10;
+            const n2 = Math.round(document.getElementById('d2').scrollTop / 120) % 10;
+            const n3 = Math.round(document.getElementById('d3').scrollTop / 120) % 10;
+
+            if(n1 === 9 && n2 === 8 && n3 === 1) {
+                const music = document.getElementById('song.mp3');
+                document.getElementById('lock-screen').style.transform = 'translateY(-100%)';
+                setTimeout(() => {
+                    document.getElementById('lock-screen').style.display = 'none';
+                    document.getElementById('main-content').style.display = 'block';
+                    document.getElementById('main-content').style.opacity = '1';
+                    music.play();
+                    setupVideoObserver(); // تفعيل تشغيل الفيديو عند الوصول إليه
+                }, 800);
+            } else {
+                alert(" ركززز ");
+            }
+        }
+
+        function setupVideoObserver() {
+            const video = document.getElementById('myVideo');
+            const music = document.getElementById('song.mp3');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        video.play(); music.pause();
+                    } else {
+                        video.pause(); music.play();
+                    }
+                });
+            }, { threshold: 0.6 });
+            observer.observe(video);
+        }                                  const s1 = document.getElementById('song.mp3');
+const s2 = document.getElementById('song2');
+const pBtn2 = document.getElementById('playBtn2');
+const sBar2 = document.getElementById('seekBar2');
+
+// التحكم في تشغيل سونج 2 وإيقاف سونج 1
+pBtn2.onclick = () => {
+    if (s2.paused) {
+        if(s1) s1.pause(); // وقف الأغنية الأصلية
+        s2.play();
+        pBtn2.textContent = '⏸';
+    } else {
+        s2.pause();
+        pBtn2.textContent = '▶';
+        if(s1) s1.play(); // رجع الأغنية الأصلية لما توقف دي
+    }
+};
+
+// تحديث شريط التقدم للأغنية التانية
+s2.ontimeupdate = () => {
+    sBar2.value = (s2.currentTime / s2.duration) * 100;
+};
+sBar2.oninput = () => {
+    s2.currentTime = (sBar2.value / 100) * s2.duration;
+};
+
+    </script>
+</body> 
+</html>
